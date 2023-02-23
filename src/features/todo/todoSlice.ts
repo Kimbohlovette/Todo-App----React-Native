@@ -12,8 +12,8 @@ export const todoSlice = createSlice({
   name: 'todo',
   initialState,
   reducers: {
-    addTodo: state => {
-      console.log(state);
+    addTodo: (state, action) => {
+      state.todos = [...state.todos, action.payload];
     },
     removeTodo: state => {
       console.log(state);
