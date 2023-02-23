@@ -8,30 +8,26 @@
  * @format
  */
 
-import React from 'react';
-import { StatusBar, Text, View, StyleSheet } from 'react-native';
-import AddTodoForm from './src/components/AddNewTodo';
+import React from "react";
+import { StatusBar, Text, View } from "react-native";
+import AddTodoForm from "./src/components/AddNewTodo";
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <View style={styles.appBody}>
-        <Text style={styles.headerText}>My Todo Daily</Text>
-        <AddTodoForm />
+      <View className="py-5 px-4">
+        <Text
+          className="text-cyan-500 font-black text-center text-xl
+        ">
+          My Todo Daily
+        </Text>
+        <View className="my-8">
+          <AddTodoForm />
+        </View>
       </View>
     </>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  appBody: { marginVertical: 36, paddingHorizontal: 16 },
-  headerText: {
-    fontSize: 18,
-    fontWeight: '800',
-    textAlign: 'center',
-    marginVertical: 16,
-  },
-});
