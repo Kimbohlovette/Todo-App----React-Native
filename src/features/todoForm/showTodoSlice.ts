@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const showTodoFormSlice = createSlice({
   name: 'showtodoform',
-  initialState: { isOpen: true },
+  initialState: { isOpen: false },
   reducers: {
     showTodoForm: state => {
       state.isOpen = true;

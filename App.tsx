@@ -9,20 +9,26 @@
  */
 
 import React from 'react';
-import { FlatList, StatusBar, Text, View } from 'react-native';
+import { FlatList, Pressable, StatusBar, Text, View } from 'react-native';
 import AddTodoForm from './src/components/AddNewTodo';
-import { useAppSelector } from './src/app/hooks/index';
+import { useAppSelector, useAppDispatch } from './src/app/hooks/index';
 import { Todo } from './src/features/todo/Todo';
+import { showTodoForm } from './src/features/todoForm/showTodoSlice';
 // import { MdTipsAndUpdates } from 'react-icons/md';
 
 const App = () => {
   const todos = useAppSelector(state => state.todo.todos);
-  const showTodoForm = useAppSelector(state => state.showForm.isOpen);
+  const toggleTodoForm = useAppSelector(state => state.showForm.isOpen);
+  const dispatch = useAppDispatch();
+
+  const handleAddTodo = () => {
+    dispatch(showTodoForm());
+  };
   return (
     <>
       <StatusBar barStyle="dark-content" />
 
-      {showTodoForm && (
+      {toggleTodoForm && (
         <View className="fixed top-0 left-0 bg-slate-400/60 backdrop-blur-sm justify-center h-screen z-50">
           <AddTodoForm />
         </View>
@@ -51,6 +57,13 @@ const App = () => {
           />
         </View>
       </View>
+      {!toggleTodoForm && (
+        <Pressable
+          onPress={handleAddTodo}
+          className="absolute bottom-16 right-8 z-40 bg-cyan-600 rounded-full shadow-lg aspect-square w-16 justify-center items-center active:bg-cyan-700">
+          <Text className="text-xl text-white">+</Text>
+        </Pressable>
+      )}
     </>
   );
 };
