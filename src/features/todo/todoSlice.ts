@@ -5,7 +5,10 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-  todos: [],
+  todos: [
+    "Indicate that you're in space and upload task.",
+    'Send feedback on dev trainees progress',
+  ],
 };
 
 export const todoSlice = createSlice({

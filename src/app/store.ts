@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import todoReducer from '../features/todo/todoSlice';
+import showTodoFormReducer from '../features/todoForm/showTodoSlice';
 
 export const store = configureStore({
   reducer: {
     todo: todoReducer,
+    showForm: showTodoFormReducer,
   },
 });
 

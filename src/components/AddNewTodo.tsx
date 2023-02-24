@@ -9,12 +9,19 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { useAppDispatch } from '../app/hooks/index';
 import { addTodo } from '../features/todo/todoSlice';
+import { hideTodoForm } from '../features/todoForm/showTodoSlice';
 export function AddTodoForm() {
   const [inputText, setInputText] = useState('');
   const dispatch = useAppDispatch();
 
   const handleSubmit = () => {
     dispatch(addTodo(inputText));
+    dispatch(hideTodoForm());
+  };
+
+  const handleCancel = () => {
+    dispatch(hideTodoForm());
+    console.log('Cancel button clicked');
   };
 
   return (
@@ -23,7 +30,7 @@ export function AddTodoForm() {
       <View>
         <TextInput
           onChangeText={text => setInputText(text)}
-          placeholder="Enter a goal for today"
+          placeholder="Enter a goal for today!"
           className="border rounded-md border-slate-400 focus:border-cyan-400 focus:shadow shadow-cyan-100"
         />
         <View className="flex-row justify-between gap-2 my-4">
@@ -34,7 +41,7 @@ export function AddTodoForm() {
           </Pressable>
           <Pressable
             className="flex-1 py-4 my-4  rounded-md hover:border-cyan-400 border border-slate-300"
-            onPress={handleSubmit}>
+            onPress={handleCancel}>
             <Text className="text-center text-slate-500 uppercase">cancel</Text>
           </Pressable>
         </View>
